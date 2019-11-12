@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Sample Application</string>
+    <string name="profile">My Profile</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="email">E-Mail</string>
+    <string name="hobbies">Hobbies</string>
+
+    <string name="name_placeholder">Name Placeholder</string>
+</resources>
