@@ -9,20 +9,23 @@ import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("user");
-
-    private TextView mUserName, mUserEmail, mUserHobbies;
-    private TextView mTest;
+    private ListView mHobbies;
+    private TextView mUserName, mUserEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         mUserName = findViewById(R.id.text_user_name);
         mUserEmail = findViewById(R.id.text_user_email);
-        mUserHobbies = findViewById(R.id.text_user_hobbies);
+        mHobbies = findViewById(R.id.list_hobbies);
+        //mUserHobbies = findViewById(R.id.text_user_hobbies);
 
         setObserver();
     }
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 if(user != null) {
                     mUserEmail.setText(user.getEmail());
                     mUserName.setText(user.getName());
-                    mUserHobbies.setText(user.getHobbies());
+                    mHobbies.setAdapter(new ArrayAdapter<>(getApplicationContext(), R.layout.hobby_list_item, user.getHobbies()));
                 }
             }
         });
